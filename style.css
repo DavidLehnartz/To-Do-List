@@ -24,8 +24,18 @@ h2 {
 }
 
 
-.mg{
+.mg {
     margin: 0px;
+}
+
+
+.mg-top {
+    margin-top: 40px;
+}
+
+
+.mg-left {
+    margin-left: 0px;
 }
 
 
@@ -42,18 +52,30 @@ header {
 .content-wrapper {}
 
 
+form {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+
 input {
-    padding: 4px 16px;
+    padding: 5px 16px;
     border-radius: 4px;
 }
 
 
 .input-container {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    margin:32px 0px;
+    flex-direction: column;
+    margin: 32px 0px;
+}
+
+
+.notes-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 
