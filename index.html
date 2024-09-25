@@ -16,17 +16,44 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body>
-    <header>
+<body class="bg-warning-subtle">
+    <header class="bg-primary-subtle">
         <h2>To Do List</h2>
     </header>
     <main>
         <section class="content-wrapper">
             <h1>To Do:</h1>
+            <div>
+                <form action="">
+                    <div class="input-container">
+                        Title:
+                        <input placeholder="title...." type="text">
+                        Notice:
+                        <input placeholder="notice...." type="text">
+                        <button type="button" class="btn btn-primary">Add To Do</button>
+                    </div>
+                </form>
+            </div>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        Title:
+                    </div>
+                    <div class="col">
+                        Notice:
+                    </div>
+                    <div class="col">
+                        Delete:
+                    </div>
+                </div>
+            </div>
+            </div>
         </section>
 
     </main>
-    <footer></footer>
+    <footer class="bg-primary-subtle">
+
+    </footer>
 </body>
 
 </html>

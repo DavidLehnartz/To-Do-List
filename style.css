@@ -14,12 +14,18 @@ main {
     display: flex;
     flex-direction: column;
     flex: 1;
+    margin: 16px;
 }
 
 
 h2 {
     color: whitesmoke;
     font-size: 32px;
+}
+
+
+.mg{
+    margin: 0px;
 }
 
 
@@ -34,6 +40,21 @@ header {
 
 
 .content-wrapper {}
+
+
+input {
+    padding: 4px 16px;
+    border-radius: 4px;
+}
+
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    margin:32px 0px;
+}
 
 
 footer {
