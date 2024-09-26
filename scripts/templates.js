@@ -7,12 +7,52 @@ function getNotesTemplate(indexNotes) {
     return `
            <div class="rendered-notes-wrapper">
                 <div class="title">
-                    <h4>$title</h4>
+                    <h4>${allNotes.notesTitle[indexNotes]}</h4>
                 </div>
                 <div class="note">
-                    <p>${notes[indexNotes]}</p>
+                    <p>${allNotes.notes[indexNotes]}</p>
                 </div>
                 <div class="note-footer">
+                    <img onclick="pushNoteToArchive(${indexNotes})" class="notes-img" src="./assets/icons/archive_black.png" alt="archive">
+                    <img onclick="pushNoteToTrash(${indexNotes})" class="notes-img" src="./assets/icons/trash_black.png" alt="trash">
+                </div>
+            </div>
+    `;
+}
+
+
+// Archive Template
+function getArchiveTemplate(indexArchiveNotes) {
+    return `
+            <div class="rendered-notes-wrapper">
+                <div class="title">
+                    <h4>${allNotes.archiveNotesTitle[indexArchiveNotes]}</h4>
+                </div>
+                <div class="note">
+                    <p>${allNotes.archiveNotes[indexArchiveNotes]}</p>
+                </div>
+                <div class="note-footer">
+                    <img class="notes-img" src="./assets/icons/notez_black.png" alt="notes">
+                    <img class="notes-img" src="./assets/icons/archive_black.png" alt="archive">
+                    <img onclick="pushArchiveNoteToTrash(${indexArchiveNotes})" class="notes-img" src="./assets/icons/trash_black.png" alt="trash">
+                </div>
+            </div>
+    `;
+}
+
+
+// Trash Template
+function getTrashTemplate(indexTrashNotes) {
+    return `
+            <div class="rendered-notes-wrapper">
+                <div class="title">
+                    <h4>${allNotes.trashNotesTitle[indexTrashNotes]}</h4>
+                </div>
+                <div class="note">
+                    <p>${allNotes.trashNotes[indexTrashNotes]}</p>
+                </div>
+                <div class="note-footer">
+                    <img class="notes-img" src="./assets/icons/notez_black.png" alt="notes">
                     <img class="notes-img" src="./assets/icons/archive_black.png" alt="archive">
                     <img class="notes-img" src="./assets/icons/trash_black.png" alt="trash">
                 </div>
