@@ -28,22 +28,27 @@
                 <form>
                     <div class="input-container">
                         <h3>Title:</h3>
-                        <input id="input_title" placeholder="title...." type="text">
+                        <input id="input_title" onkeyup="isInputEmpty()" placeholder="title...." type="text" required>
                     </div>
                     <div class="input-container">
                         <h3>Note:</h3>
-                        <input id="input_note" placeholder="note...." type="text">
+                        <input id="input_note" onkeyup="isInputEmpty()" placeholder="note...." type="text" required>
                     </div>
                     <div>
-                        <button onclick="addTitleAndNote()" type="button" class="btn btn-primary mg-top">Add To
-                            Do</button>
+                        <h3>Date:</h3> 
+                        <input id="date" type="date">
+                    </div>
+                    <div>
+                        <button id="button" onclick="addTitleAndNote()" type="button" class="btn btn-primary mg-top">
+                            Add To Do
+                        </button>
                     </div>
                 </form>
             </div>
             <div class="notes-container">
-                <div class="row">
+                <div class="row gp">
                     <div class="col">
-                        <h3>Note:</h3>
+                        <h3>Notes:</h3>
                         <div id="notes">
                             <!-- <div class="rendered-notes-wrapper">
                                 <div class="title">
@@ -89,7 +94,6 @@
                 </div>
             </div>
         </section>
-
     </main>
     <footer class="bg-primary">
 
