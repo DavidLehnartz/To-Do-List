@@ -8,6 +8,7 @@ function getNotesTemplate(indexNotes) {
            <div class="rendered-notes-wrapper">
                 <div class="title">
                     <h4>${allNotes.notesTitle[indexNotes]}</h4>
+                    <p>${allNotes.date[indexNotes]}</p>
                 </div>
                 <div class="note">
                     <p>${allNotes.notes[indexNotes]}</p>
@@ -27,6 +28,7 @@ function getArchiveTemplate(indexArchiveNotes) {
             <div class="rendered-notes-wrapper">
                 <div class="title">
                     <h4>${allNotes.archiveNotesTitle[indexArchiveNotes]}</h4>
+                    <p>${allNotes.date[indexArchiveNotes]}</p>
                 </div>
                 <div class="note">
                     <p>${allNotes.archiveNotes[indexArchiveNotes]}</p>
@@ -47,6 +49,7 @@ function getTrashTemplate(indexTrashNotes) {
             <div class="rendered-notes-wrapper">
                 <div class="title">
                     <h4>${allNotes.trashNotesTitle[indexTrashNotes]}</h4>
+                     <p>${allNotes.date[indexTrashNotes]}</p>
                 </div>
                 <div class="note">
                     <p>${allNotes.trashNotes[indexTrashNotes]}</p>
