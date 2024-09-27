@@ -17,7 +17,7 @@ let allNotes = {
 
 // Initialize
 function init() {
-    isInputEmpty();
+    isInputEmptyDisableBtn();
 }
 
 
@@ -66,17 +66,17 @@ function addTitleAndNote() {
 
     renderNotes();
     clearInput();
-    isInputEmpty();
+    isInputEmptyDisableBtn();
 }
 
 
 // Push Note From Notes To Archive
 function pushNoteToArchive(indexNotes) {
-    let archiveNote = allNotes.notes.splice(indexNotes, 1);
-    allNotes.archiveNotes.push(archiveNote[0]);
-
     let archiveNoteTitle = allNotes.notesTitle.splice(indexNotes, 1);
     allNotes.archiveNotesTitle.push(archiveNoteTitle[0])
+
+    let archiveNote = allNotes.notes.splice(indexNotes, 1);
+    allNotes.archiveNotes.push(archiveNote[0]);
 
     renderNotes();
     renderArchiveNotes();
@@ -85,11 +85,11 @@ function pushNoteToArchive(indexNotes) {
 
 // Push Note From Notes To Trash
 function pushNoteToTrash(indexNotes) {
-    let note = allNotes.notes.splice(indexNotes, 1);
-    allNotes.trashNotes.push(note[0]);
-
     let noteTitle = allNotes.notesTitle.splice(indexNotes, 1);
     allNotes.trashNotesTitle.push(noteTitle[0]);
+
+    let note = allNotes.notes.splice(indexNotes, 1);
+    allNotes.trashNotes.push(note[0]);
 
     renderNotes();
     renderTrashNotes();
@@ -98,19 +98,72 @@ function pushNoteToTrash(indexNotes) {
 
 // Push Note From Archive To Trash
 function pushArchiveNoteToTrash(indexArchiveNotes) {
-    let trashNote = allNotes.archiveNotes.splice(indexArchiveNotes, 1);
-    allNotes.trashNotes.push(trashNote[0]);
-
     let trashNoteTitle = allNotes.archiveNotesTitle.splice(indexArchiveNotes, 1);
     allNotes.trashNotesTitle.push(trashNoteTitle[0])
+
+    let trashNote = allNotes.archiveNotes.splice(indexArchiveNotes, 1);
+    allNotes.trashNotes.push(trashNote[0]);
 
     renderArchiveNotes();
     renderTrashNotes();
 }
 
 
+// Restore Note From Archive To Notes
+function restoreArchiveNoteToNotes(indexArchiveNotes) {
+    let restoredNoteTitle = allNotes.archiveNotesTitle.splice(indexArchiveNotes, 1);
+    allNotes.notesTitle.push(restoredNoteTitle[0]);
+
+    let restoredArchiveNote = allNotes.archiveNotes.splice(indexArchiveNotes, 1);
+    allNotes.notes.push(restoredArchiveNote[0]);
+
+    renderArchiveNotes();
+    renderNotes();
+}
+
+
+// Restore Note From Trash To Archive
+function restoreNoteFromTrashToArchive(indexTrashNotes) {
+    let restoredTrashNoteTitleToArchive = allNotes.trashNotesTitle.splice(indexTrashNotes, 1);
+    allNotes.archiveNotesTitle.push(restoredTrashNoteTitleToArchive[0]);
+
+    let restoredTrashNoteToArchive = allNotes.trashNotes.splice(indexTrashNotes, 1);
+    allNotes.archiveNotes.push(restoredTrashNoteToArchive[0]);
+
+    renderArchiveNotes();
+    renderTrashNotes();
+}
+
+
+// Restore Notes From Trash To Notes
+function restoreNotesFromTrashToNotes(indexTrashNotes) {
+    let restoredTrashNoteTitleToNotes = allNotes.trashNotesTitle.splice(indexTrashNotes, 1);
+    allNotes.notesTitle.push(restoredTrashNoteTitleToNotes[0]);
+
+    let restoredTrashNoteToNotes = allNotes.trashNotes.splice(indexTrashNotes, 1);
+    allNotes.notes.push(restoredTrashNoteToNotes[0]);
+
+    renderTrashNotes();
+    renderNotes();
+}
+
+
+// Delete Notes From Trash
+function deleteNotesFromTrash(indexTrashNotes) {
+    allNotes.trashNotesTitle.splice(indexTrashNotes, 1);
+    allNotes.trashNotes.splice(indexTrashNotes,);
+
+    if (allNotes.trashNotesTitle.length === 0 && allNotes.trashNotes.length === 0) {
+        allNotes.trashNotesTitle = [];
+        allNotes.trashNotes = [];
+    }
+
+    renderTrashNotes();
+}
+
+
 // If Input Is Empty Don`t Submit
-function isInputEmpty() {
+function isInputEmptyDisableBtn() {
     let inputNoteTitle = document.getElementById('input_title').value;
     let inputNote = document.getElementById('input_note').value;
 
