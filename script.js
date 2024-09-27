@@ -11,6 +11,7 @@ let allNotes = {
     'notes': [],
     'archiveNotes': [],
     'trashNotes': [],
+    'date': [],
 }
 
 
@@ -50,21 +51,22 @@ function renderTrashNotes() {
 }
 
 
-// Add Title and Notes
+// Add Title and Notes To Notes
 function addTitleAndNote() {
     let inputNoteTitleRef = document.getElementById('input_title');
     let inputNoteTitle = inputNoteTitleRef.value;
     let inputNoteRef = document.getElementById('input_note');
     let inputNote = inputNoteRef.value;
+    let dueDateRef = document.getElementById('date');
+    let dueDate = dueDateRef.value;
 
     allNotes.notes.push(inputNote);
     allNotes.notesTitle.push(inputNoteTitle);
+    allNotes.date.push(dueDate);
 
     renderNotes();
     clearInput();
     isInputEmpty();
-    console.table(allNotes.notes);
-    console.table(allNotes.notesTitle);
 }
 
 
