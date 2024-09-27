@@ -55,11 +55,6 @@ header {
 }
 
 
-.content-wrapper {
-   
-}
-
-
 form {
     display: flex;
     gap: 32px;
