@@ -34,8 +34,7 @@ function getArchiveTemplate(indexArchiveNotes) {
                     <p>${allNotes.archiveNotes[indexArchiveNotes]}</p>
                 </div>
                 <div class="note-footer">
-                    <img class="notes-img" src="./assets/icons/notez_black.png" alt="notes">
-                    <img class="notes-img" src="./assets/icons/archive_black.png" alt="archive">
+                    <img onclick="restoreArchiveNoteToNotes(${indexArchiveNotes})" class="notes-img" src="./assets/icons/notez_black.png" alt="notes">
                     <img onclick="pushArchiveNoteToTrash(${indexArchiveNotes})" class="notes-img" src="./assets/icons/trash_black.png" alt="trash">
                 </div>
             </div>
@@ -55,9 +54,9 @@ function getTrashTemplate(indexTrashNotes) {
                     <p>${allNotes.trashNotes[indexTrashNotes]}</p>
                 </div>
                 <div class="note-footer">
-                    <img class="notes-img" src="./assets/icons/notez_black.png" alt="notes">
-                    <img class="notes-img" src="./assets/icons/archive_black.png" alt="archive">
-                    <img class="notes-img" src="./assets/icons/trash_black.png" alt="trash">
+                    <img onclick="restoreNotesFromTrashToNotes(${indexTrashNotes})" class="notes-img" src="./assets/icons/notez_black.png" alt="notes">
+                    <img onclick="restoreNoteFromTrashToArchive(${indexTrashNotes})" class="notes-img" src="./assets/icons/archive_black.png" alt="archive">
+                    <img onclick="deleteNotesFromTrash(${indexTrashNotes})" class="notes-img" src="./assets/icons/trash_black.png" alt="trash">
                 </div>
             </div>
     `;
