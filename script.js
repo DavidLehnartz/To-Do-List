@@ -6,17 +6,20 @@
 // Array for all notes
 let allNotes = {
     'notesTitle': [],
-    'archiveNotesTitle': [],
-    'trashNotesTitle': [],
     'notes': [],
+    'archiveNotesTitle': [],
     'archiveNotes': [],
+    'trashNotesTitle': [],
     'trashNotes': [],
-    'date': [],
+    'date': [],  // Array to store dates
+    'archiveDates': [],  // Dates for archived notes
+    'trashDates': [],  // Dates for trashed notes
 }
 
 
 // Initialize
 function init() {
+    GetFromLocalStorage();
     isInputEmptyDisableBtn();
 }
 
@@ -64,6 +67,7 @@ function addTitleAndNote() {
     allNotes.notesTitle.push(inputNoteTitle);
     allNotes.date.push(dueDate);
 
+    saveToLocalStorage();
     renderNotes();
     clearInput();
     isInputEmptyDisableBtn();
@@ -78,6 +82,10 @@ function pushNoteToArchive(indexNotes) {
     let archiveNote = allNotes.notes.splice(indexNotes, 1);
     allNotes.archiveNotes.push(archiveNote[0]);
 
+    let archiveDate = allNotes.date.splice(indexNotes, 1);  // Move the date as well
+    allNotes.archiveDates.push(archiveDate[0]);
+
+    saveToLocalStorage();
     renderNotes();
     renderArchiveNotes();
 }
@@ -91,6 +99,10 @@ function pushNoteToTrash(indexNotes) {
     let note = allNotes.notes.splice(indexNotes, 1);
     allNotes.trashNotes.push(note[0]);
 
+    let date = allNotes.date.splice(indexNotes, 1);  // Move the date as well
+    allNotes.trashDates.push(date[0]);
+
+    saveToLocalStorage();
     renderNotes();
     renderTrashNotes();
 }
@@ -104,6 +116,10 @@ function pushArchiveNoteToTrash(indexArchiveNotes) {
     let trashNote = allNotes.archiveNotes.splice(indexArchiveNotes, 1);
     allNotes.trashNotes.push(trashNote[0]);
 
+    let trashDate = allNotes.archiveDates.splice(indexArchiveNotes, 1);
+    allNotes.trashDates.push(trashDate[0]);
+
+    saveToLocalStorage();
     renderArchiveNotes();
     renderTrashNotes();
 }
@@ -117,6 +133,10 @@ function restoreArchiveNoteToNotes(indexArchiveNotes) {
     let restoredArchiveNote = allNotes.archiveNotes.splice(indexArchiveNotes, 1);
     allNotes.notes.push(restoredArchiveNote[0]);
 
+    let restoredDate = allNotes.archiveDates.splice(indexArchiveNotes, 1);  // Restore the date
+    allNotes.date.push(restoredDate[0]);
+
+    saveToLocalStorage();
     renderArchiveNotes();
     renderNotes();
 }
@@ -130,6 +150,10 @@ function restoreNoteFromTrashToArchive(indexTrashNotes) {
     let restoredTrashNoteToArchive = allNotes.trashNotes.splice(indexTrashNotes, 1);
     allNotes.archiveNotes.push(restoredTrashNoteToArchive[0]);
 
+    let restoredDateToArchive = allNotes.trashDates.splice(indexTrashNotes, 1);  // Restore the date
+    allNotes.archiveDates.push(restoredDateToArchive[0]);
+
+    saveToLocalStorage();
     renderArchiveNotes();
     renderTrashNotes();
 }
@@ -143,22 +167,43 @@ function restoreNotesFromTrashToNotes(indexTrashNotes) {
     let restoredTrashNoteToNotes = allNotes.trashNotes.splice(indexTrashNotes, 1);
     allNotes.notes.push(restoredTrashNoteToNotes[0]);
 
-    renderTrashNotes();
+    let restoredDateToNotes = allNotes.trashDates.splice(indexTrashNotes, 1);  // Restore the date
+    allNotes.date.push(restoredDateToNotes[0]);
+
+    saveToLocalStorage();
     renderNotes();
+    renderTrashNotes();
 }
 
 
 // Delete Notes From Trash
 function deleteNotesFromTrash(indexTrashNotes) {
     allNotes.trashNotesTitle.splice(indexTrashNotes, 1);
-    allNotes.trashNotes.splice(indexTrashNotes,);
+    allNotes.trashNotes.splice(indexTrashNotes, 1);
+    allNotes.trashDates.splice(indexTrashNotes, 1);
 
-    if (allNotes.trashNotesTitle.length === 0 && allNotes.trashNotes.length === 0) {
+    if (allNotes.trashNotesTitle.length === 0 && allNotes.trashNotes.length === 0 && allNotes.trashDates.length === 0) {
         allNotes.trashNotesTitle = [];
         allNotes.trashNotes = [];
+        allNotes.trashDates = [];
     }
 
+    saveToLocalStorage();
     renderTrashNotes();
+    emptyTrash();
+}
+
+
+// Empty Entire Trash
+function emptyTrash() {
+    if (allNotes.trashNotes.length === 0) {
+        allNotes.trashNotesTitle = [];
+        allNotes.trashNotes = [];
+        allNotes.trashDates = [];
+
+        saveToLocalStorage();
+        renderTrashNotes();
+    }
 }
 
 
@@ -172,6 +217,8 @@ function isInputEmptyDisableBtn() {
     } else {
         document.getElementById('button').disabled = false;
     }
+
+    saveToLocalStorage();
 }
 
 
@@ -179,4 +226,7 @@ function isInputEmptyDisableBtn() {
 function clearInput() {
     document.getElementById('input_title').value = "";
     document.getElementById('input_note').value = "";
+    document.getElementById('date').value = "";
+
+    saveToLocalStorage();
 }
