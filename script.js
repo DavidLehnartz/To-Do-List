@@ -11,9 +11,9 @@ let allNotes = {
     'archiveNotes': [],
     'trashNotesTitle': [],
     'trashNotes': [],
-    'date': [],  // Array to store dates
-    'archiveDates': [],  // Dates for archived notes
-    'trashDates': [],  // Dates for trashed notes
+    'date': [],  
+    'archiveDates': [],  
+    'trashDates': [],  
 }
 
 
@@ -82,7 +82,7 @@ function pushNoteToArchive(indexNotes) {
     let archiveNote = allNotes.notes.splice(indexNotes, 1);
     allNotes.archiveNotes.push(archiveNote[0]);
 
-    let archiveDate = allNotes.date.splice(indexNotes, 1);  // Move the date as well
+    let archiveDate = allNotes.date.splice(indexNotes, 1);  
     allNotes.archiveDates.push(archiveDate[0]);
 
     saveToLocalStorage();
@@ -99,7 +99,7 @@ function pushNoteToTrash(indexNotes) {
     let note = allNotes.notes.splice(indexNotes, 1);
     allNotes.trashNotes.push(note[0]);
 
-    let date = allNotes.date.splice(indexNotes, 1);  // Move the date as well
+    let date = allNotes.date.splice(indexNotes, 1); 
     allNotes.trashDates.push(date[0]);
 
     saveToLocalStorage();
@@ -133,7 +133,7 @@ function restoreArchiveNoteToNotes(indexArchiveNotes) {
     let restoredArchiveNote = allNotes.archiveNotes.splice(indexArchiveNotes, 1);
     allNotes.notes.push(restoredArchiveNote[0]);
 
-    let restoredDate = allNotes.archiveDates.splice(indexArchiveNotes, 1);  // Restore the date
+    let restoredDate = allNotes.archiveDates.splice(indexArchiveNotes, 1);  
     allNotes.date.push(restoredDate[0]);
 
     saveToLocalStorage();
@@ -150,7 +150,7 @@ function restoreNoteFromTrashToArchive(indexTrashNotes) {
     let restoredTrashNoteToArchive = allNotes.trashNotes.splice(indexTrashNotes, 1);
     allNotes.archiveNotes.push(restoredTrashNoteToArchive[0]);
 
-    let restoredDateToArchive = allNotes.trashDates.splice(indexTrashNotes, 1);  // Restore the date
+    let restoredDateToArchive = allNotes.trashDates.splice(indexTrashNotes, 1);  
     allNotes.archiveDates.push(restoredDateToArchive[0]);
 
     saveToLocalStorage();
@@ -167,7 +167,7 @@ function restoreNotesFromTrashToNotes(indexTrashNotes) {
     let restoredTrashNoteToNotes = allNotes.trashNotes.splice(indexTrashNotes, 1);
     allNotes.notes.push(restoredTrashNoteToNotes[0]);
 
-    let restoredDateToNotes = allNotes.trashDates.splice(indexTrashNotes, 1);  // Restore the date
+    let restoredDateToNotes = allNotes.trashDates.splice(indexTrashNotes, 1);  
     allNotes.date.push(restoredDateToNotes[0]);
 
     saveToLocalStorage();
